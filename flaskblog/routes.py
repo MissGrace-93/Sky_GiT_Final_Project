@@ -1,12 +1,14 @@
+import flask_login
 import sqlalchemy
 from flask import render_template, flash, redirect, url_for, request, abort
+from flaskext import mysql
 from sqlalchemy import create_engine
 
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, PostForm
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-from datetime import date, datetime
+import datetime
 
 engine = create_engine("mysql+mysqlconnector://admin3:@GitPa$$w0rd#@54.74.234.11/finalproject_group3")
 Post.metadata.bind = engine
@@ -15,12 +17,16 @@ DBSession = sqlalchemy.orm.sessionmaker(bind=engine)
 session = DBSession()
 
 
-
 @app.route('/')
-@app.route('/home')
-def home():
+@app.route('/home_page')
+def home_page():
+    return render_template('home_page.html')
+
+
+@app.route('/blog_archive')
+def blog_archive():
     posts = session.query(Post).all()
-    return render_template('home.html', posts=posts)
+    return render_template('blog_archive.html', posts=posts)
 
 
 @app.route('/about')
@@ -31,7 +37,7 @@ def about():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('home_page'))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -46,14 +52,14 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('home_page'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            return redirect(next_page) if next_page else redirect(url_for('home_page'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
@@ -62,7 +68,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('home'))
+    return redirect(url_for('home_page'))
 
 
 @app.route('/account')
@@ -71,9 +77,9 @@ def account():
     return render_template('account.html', title='Account')
 
 
-@app.route("/post/<int:id>")
-def post(id):
-    post = Post.query.get_or_404(id)
+@app.route("/post/<int:post_id>")
+def post(post_id):
+    post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post)
 
 
@@ -82,18 +88,18 @@ def post(id):
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(title=form.title.data, date_posted=db.date_posted, content=form.content.data, user_id=current_user)
-        db.session.add(post)
+        new_post = Post(title=request.form['title'], content=request.form['content'], author=current_user)
+        db.session.add(new_post)
         db.session.commit()
         flash('Your post has been created!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('blog_archive'))
     return render_template('create_post.html', title='New Post', form=form, legend='New Post')
 
 
-@app.route("/post/<int:id>/update", methods=['GET', 'POST'])
+@app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
-def update_post(id):
-    post = Post.query.get_or_404(id)
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
     form = PostForm()
@@ -102,20 +108,20 @@ def update_post(id):
         post.content = form.content.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
-        return redirect(url_for('post', id=id))
+        return redirect(url_for('post', post_id=post.id))
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content
     return render_template('create_post.html', title='Update Post', form=form, legend='Update Post')
 
 
-@app.route("/post/<int:id>/delete", methods=['POST'])
+@app.route("/post/<int:post_id>/delete", methods=['POST'])
 @login_required
-def delete_post(id):
-    post = Post.query.get_or_404(id)
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         abort(403)
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
-    return redirect(url_for('home'))
+    return redirect(url_for('blog_archive'))
