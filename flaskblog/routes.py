@@ -1,19 +1,20 @@
+import flask_login
 import sqlalchemy
 from flask import render_template, flash, redirect, url_for, request, abort
+from flaskext import mysql
 from sqlalchemy import create_engine
 
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, PostForm
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-from datetime import date, datetime
+import datetime
 
 engine = create_engine("mysql+mysqlconnector://admin3:@GitPa$$w0rd#@54.74.234.11/finalproject_group3")
 Post.metadata.bind = engine
 
 DBSession = sqlalchemy.orm.sessionmaker(bind=engine)
 session = DBSession()
-
 
 
 @app.route('/')
@@ -82,8 +83,8 @@ def post(id):
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(title=form.title.data, date_posted=db.date_posted, content=form.content.data, user_id=current_user)
-        db.session.add(post)
+        new_post = Post(title=request.form['title'], content=request.form['content'], user_id=current_user.id)
+        db.session.add(new_post)
         db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
@@ -102,7 +103,7 @@ def update_post(id):
         post.content = form.content.data
         db.session.commit()
         flash('Your post has been updated!', 'success')
-        return redirect(url_for('post', id=id))
+        return redirect(url_for('post', id=post.id))
     elif request.method == 'GET':
         form.title.data = post.title
         form.content.data = post.content

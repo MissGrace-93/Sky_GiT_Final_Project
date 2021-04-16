@@ -2,6 +2,7 @@ from datetime import datetime
 from flaskblog import db, login_manager
 from flask_login import UserMixin
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -20,12 +21,7 @@ class User(db.Model, UserMixin):
 
     # how the obj is printed
     def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
-
-    def __init__(self, username, email, password):
-        self.username = username
-        self.email = email
-        self.password = password
+        return f"User('{self.username}', '{self.email}')"
 
 
 class Post(db.Model):
@@ -36,11 +32,4 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"User('{self.title}', '{self.date_posted}')"
-    # no content to speed up the loop
-
-    def __init__(self, title, date_posted, content, user_id):
-        self.title = title
-        self.date_posted = date_posted
-        self.content = content
-        self.user_id = user_id
+        return f"Post('{self.title}', '{self.date_posted}')"
