@@ -1,14 +1,12 @@
 import flask_login
 import sqlalchemy
 from flask import render_template, flash, redirect, url_for, request, abort
-from flaskext import mysql
 from sqlalchemy import create_engine
 
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, PostForm
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
-import datetime
 
 engine = create_engine("mysql+mysqlconnector://admin3:@GitPa$$w0rd#@54.74.234.11/finalproject_group3")
 Post.metadata.bind = engine
