@@ -1,4 +1,5 @@
 import flask_login
+import paginate as paginate
 import sqlalchemy
 from flask import render_template, flash, redirect, url_for, request, abort
 from sqlalchemy import create_engine
@@ -23,7 +24,8 @@ def home_page():
 
 @app.route('/blog_archive')
 def blog_archive():
-    posts = session.query(Post).all()
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('blog_archive.html', posts=posts)
 
 
