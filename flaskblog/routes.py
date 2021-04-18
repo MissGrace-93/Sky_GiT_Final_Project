@@ -25,7 +25,13 @@ def home_page():
 
 @app.route('/blog_archive')
 def blog_archive():
-    posts = session.query(Post).all()
+    q = request.args.get('q')
+
+    if q:
+        posts = session.query(Post).filter(Post.title.contains(q) |
+                                           Post.content.contains(q))
+    else:
+        posts = session.query(Post).all()
     return render_template('blog_archive.html', posts=posts)
 
 
