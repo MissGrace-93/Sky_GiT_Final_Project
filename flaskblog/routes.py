@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, PostForm
-from flaskblog.models import User, Post
+from flaskblog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 import datetime
 
@@ -83,10 +83,37 @@ def account():
     return render_template('account.html', title='Account')
 
 
-@app.route("/post/<int:post_id>")
+@app.route("/post/<int:post_id>", methods=['GET', 'POST'])
 def post(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+    comments = Comments.query.filter_by(post_id=post.id).all()
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        comment = Comments(name=name, email=email, message=message, post_id=post.id)
+        db.session.add(comment)
+        post.comments += 1
+        flash('Your comment has been submitted', 'success')
+        db.session.commit()
+
+        return redirect(request.url)
+    return render_template('post.html', title=post.title, post=post, comments=comments)
+
+
+# @app.route("/post/<int:post_id>", methods=['POST'])
+# def post(post_id):
+#     name = request.form.get('name')
+#     email = request.form.get('email')
+#     message = request.form.get('message')
+#     comment = Comments(name=name, email=email, message=message, post_id=post.id)
+#     db.session.add(comment)
+#     post.comments += 1
+#     flash('Your comment has been submitted', 'success')
+#     db.session.commit()
+#
+#     return redirect(request.url)
 
 
 @app.route("/post/new", methods=['GET', 'POST'])

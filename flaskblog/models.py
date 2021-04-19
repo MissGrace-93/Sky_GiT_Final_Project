@@ -30,6 +30,22 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    comments = db.Column(db.Integer, default=0)
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+
+
+class Comments(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=False, nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id', ondelete='CASCADE'), nullable=False)
+    post = db.relationship('Post', backref=db.backref('posts', lazy=True, passive_deletes=True))
+    feature = db.Column(db.Boolean, default=False, nullable=False)
+    date_pub = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Post %r' % self.name
+
