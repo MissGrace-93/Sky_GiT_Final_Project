@@ -9,6 +9,9 @@ from flaskblog.forms import RegistrationForm, LoginForm, PostForm
 from flaskblog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 
+from forms import email_validator
+from flask_mail import Mail,Message
+
 engine = create_engine("mysql+mysqlconnector://admin3:@GitPa$$w0rd#@54.74.234.11/finalproject_group3")
 Post.metadata.bind = engine
 
@@ -19,6 +22,9 @@ session = DBSession()
 @app.route('/')
 @app.route('/home_page')
 def home_page():
+
+    sendTestEmail()
+
     return render_template('home_page.html')
 
 
@@ -160,3 +166,84 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('blog_archive'))
+
+
+def sendTestEmail():
+    msg = Message("Our first Python Email",
+                  sender="ctrl.alt.elite.2021@gmail.com",
+                  recipients=["ctrl.alt.elite.2021@gmail.com"])
+
+    msg.body = """ 
+    Hello there,
+
+    I am sending this message from python.
+
+    say Hello
+
+    regards,
+    Me
+    """
+
+
+    msg.html = """
+
+    <div>
+    <h5>Hello there</h5>
+    <br>
+
+    <p>
+    I am sending this message from Python 
+    <br>
+    Say hello 
+    <br>
+    Regards
+    </p>
+    </div>
+
+    """
+
+    # mail.send(msg)
+
+
+def sendContactForm(result):
+    msg = Message("New Message",
+                  sender="ctrl.alt.elite.2021@gmail.com",
+                  recipients=["ctrl.alt.elite.2021@gmail.com"])
+
+    msg.body = """
+    Hello there,
+
+    You just received a contact form.
+
+    Name: {}
+    Email: {}
+    Subject: {}
+    Message: {}
+
+
+    Kind Regards,
+    Admin
+
+    """.format(result['name'], result['email'],result['subject'],result['message'])
+
+    mail.send(msg)
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    if request.method == 'POST':
+        result = {}
+
+        result['name'] = request.form['name']
+        result['email'] = request.form['email'].replace(' ', '').lower()
+        result['subject'] = request.form['subject']
+        result['message'] = request.form['message']
+
+        sendContactForm(result)
+
+        # return render_template('home.html', **locals())
+
+        return redirect(url_for('home'))
+
+
+    return render_template('contact-form.html', **locals())
+
