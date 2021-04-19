@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+import email_validator
+from flask_mail import Mail,Message
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'arandomstring'
