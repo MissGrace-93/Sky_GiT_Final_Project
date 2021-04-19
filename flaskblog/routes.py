@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, PostForm
-from flaskblog.models import User, Post
+from flaskblog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
 
 engine = create_engine("mysql+mysqlconnector://admin3:@GitPa$$w0rd#@54.74.234.11/finalproject_group3")
@@ -26,6 +26,14 @@ def home_page():
 def blog_archive():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    
+#     q = request.args.get('q')
+
+#     if q:
+#         posts = session.query(Post).filter(Post.title.contains(q) |
+#                                            Post.content.contains(q))
+#     else:
+#         posts = session.query(Post).all()
     return render_template('blog_archive.html', posts=posts)
 
 
@@ -77,10 +85,37 @@ def account():
     return render_template('account.html', title='Account')
 
 
-@app.route("/post/<int:post_id>")
+@app.route("/post/<int:post_id>", methods=['GET', 'POST'])
 def post(post_id):
     post = Post.query.get_or_404(post_id)
-    return render_template('post.html', title=post.title, post=post)
+    comments = Comments.query.filter_by(post_id=post.id).all()
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        comment = Comments(name=name, email=email, message=message, post_id=post.id)
+        db.session.add(comment)
+        post.comments += 1
+        flash('Your comment has been submitted', 'success')
+        db.session.commit()
+
+        return redirect(request.url)
+    return render_template('post.html', title=post.title, post=post, comments=comments)
+
+
+# @app.route("/post/<int:post_id>", methods=['POST'])
+# def post(post_id):
+#     name = request.form.get('name')
+#     email = request.form.get('email')
+#     message = request.form.get('message')
+#     comment = Comments(name=name, email=email, message=message, post_id=post.id)
+#     db.session.add(comment)
+#     post.comments += 1
+#     flash('Your comment has been submitted', 'success')
+#     db.session.commit()
+#
+#     return redirect(request.url)
 
 
 @app.route("/post/new", methods=['GET', 'POST'])
