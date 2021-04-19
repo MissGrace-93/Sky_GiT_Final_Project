@@ -1,14 +1,13 @@
 import flask_login
+import paginate as paginate
 import sqlalchemy
 from flask import render_template, flash, redirect, url_for, request, abort
-from flaskext import mysql
 from sqlalchemy import create_engine
 
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, PostForm
 from flaskblog.models import User, Post, Comments
 from flask_login import login_user, current_user, logout_user, login_required
-import datetime
 
 engine = create_engine("mysql+mysqlconnector://admin3:@GitPa$$w0rd#@54.74.234.11/finalproject_group3")
 Post.metadata.bind = engine
@@ -25,13 +24,16 @@ def home_page():
 
 @app.route('/blog_archive')
 def blog_archive():
-    q = request.args.get('q')
+    page = request.args.get('page', 1, type=int)
+    posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
+    
+#     q = request.args.get('q')
 
-    if q:
-        posts = session.query(Post).filter(Post.title.contains(q) |
-                                           Post.content.contains(q))
-    else:
-        posts = session.query(Post).all()
+#     if q:
+#         posts = session.query(Post).filter(Post.title.contains(q) |
+#                                            Post.content.contains(q))
+#     else:
+#         posts = session.query(Post).all()
     return render_template('blog_archive.html', posts=posts)
 
 
