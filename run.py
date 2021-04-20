@@ -5,4 +5,4 @@ from flaskblog import app
 #     app.run(debug=True, port='3306')
 
 if __name__ == '__main__':
-    app.run(debug=True, port='8888')
+    app.run(debug=True, port='8080')
