@@ -26,16 +26,20 @@ def home_page():
 def blog_archive():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
-    
-#     q = request.args.get('q')
 
-#     if q:
-#         posts = session.query(Post).filter(Post.title.contains(q) |
-#                                            Post.content.contains(q))
-#     else:
-#         posts = session.query(Post).all()
     return render_template('blog_archive.html', posts=posts)
 
+
+@app.route('/results')
+def results():
+    q = request.args.get('q')
+
+    if q:
+        posts= session.query(Post).filter(Post.title.contains(q) |
+                                           Post.content.contains(q))
+    else:
+        posts = session.query(Post).all()
+    return render_template('results.html', posts=posts)
 
 @app.route('/about')
 def about():
