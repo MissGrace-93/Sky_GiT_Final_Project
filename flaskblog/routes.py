@@ -40,7 +40,7 @@ def results():
 
     if q:
         posts= session.query(Post).filter(Post.title.contains(q) |
-                                           Post.content.contains(q))
+                                           Post.content.contains(q)).order_by(Post.date_posted.desc())
     else:
         posts = session.query(Post).all()
     return render_template('results.html', posts=posts)
