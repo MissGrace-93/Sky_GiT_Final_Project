@@ -31,6 +31,7 @@
     {% else %}
         <title>Flask Blog</title>
     {% endif %}
+
 </head>
 <body>
 <!-- HEADER =============================-->
@@ -51,30 +52,37 @@
 				<li class="propClone"><a href="{{ url_for('about') }}">About</a></li>
 				<li class="propClone"><a href="{{ url_for('blog_archive') }}">Blog Archive</a></li>
 
-                {% if current_user.is_authenticated %}
-                    <li class="propClone"><a href="{{ url_for('new_post') }}">New Post</a></li>
-                    <li class="propClone"><a href="{{ url_for('account') }}">Account</a></li>
-                    <li class="propClone"><a href="{{ url_for('logout') }}">Logout</a></li>
-                {% else %}
-                    <li class="propClone"><a href="{{ url_for('login') }}">Login</a></li>
-                    <li class="propClone"><a href="{{ url_for('register') }}">Register</a></li>
-                {% endif %}
-				<li class="propClone"><a href="{{ url_for('contact') }} ">Contact</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li class="propClone"><a href="{{ url_for('new_post') }}">New Post</a></li>
+                        <li class="propClone"><a href="{{ url_for('account') }}">Account</a></li>
+                        <li class="propClone"><a href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                        <li class="propClone"><a href="{{ url_for('login') }}">Login</a></li>
+                        <li class="propClone"><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
+                    <li class="propClone"><a href="{{ url_for('contact') }} ">Contact</a></li>
 
+                <li class="propClone"> <!-- Search bar html needs padding to push down  -->
+                <form class="form-inline my-2 my-lg-0" action="{{ url_for('results') }}" method="GET" >
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                </li>
 
 			</ul>
 		</div>
 	</div>
 	</nav>
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<div class="text-homeimage">
 					<div class="maintext-image" data-scrollreveal="enter top over 1.5s after 0.1s">
-						 Increase Digital Sales
+						 Save the small animals...
 					</div>
 					<div class="subtext-image" data-scrollreveal="enter bottom over 1.7s after 0.3s">
-						 Boost revenue with Scorilo
+						 ... and the big ones
 					</div>
 				</div>
 			</div>
@@ -86,44 +94,86 @@
 
 
 
-<!--<body>-->
-<!--    <header class="site-header">-->
-<!--      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">-->
-<!--        <div class="container">-->
-<!--          <a class="navbar-brand mr-4" href="/">Flask Blog</a>-->
-<!--          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--          </button>-->
-<!--          <div class="collapse navbar-collapse" id="navbarToggle">-->
-<!--            <div class="navbar-nav mr-auto">-->
-<!--              <a class="nav-item nav-link" href="{{ url_for('home_page') }}">Home</a>-->
-<!--              <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>-->
-<!--              <a class="nav-item nav-link" href="{{ url_for('blog_archive') }}">Blog</a>-->
-<!--              <a class="nav-item nav-link" href="{{ url_for('contact') }} ">Contact Us</a>-->
-<!--            </div>-->
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Flask Blog</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="{{ url_for('home_page') }}">Home</a>
+              <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+              <a class="nav-item nav-link" href="{{ url_for('blog_archive') }}">Blog</a>
+              <a class="nav-item nav-link" href="{{ url_for('contact') }} ">Contact Us</a>
+            </div>
 
 
-            <!-- Navbar Right Side -->
-<!--            <div class="navbar-nav">-->
-<!--                {% if current_user.is_authenticated %}-->
-<!--                    <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>-->
-<!--                    <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>-->
-<!--                    <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>-->
-<!--                {% else %}-->
-<!--                    <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>-->
-<!--                    <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>-->
-<!--                {% endif %}-->
-<!--            </div>-->
+             Navbar Right Side
+            <div class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                    <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                    <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                    <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                    <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+                {% endif %}
+            </div>
             <div> <!-- Search bar html -->
                 <form class="form-inline my-2 my-lg-0" action="{{ url_for('results') }}" method="GET" >
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
-<!--          </div>-->
-<!--        </div>-->
-<!--      </nav>-->
-<!--    </header>-->
+          </div>
+        </div>
+      </nav>
+    </header>
+
+<!-- STEPS =============================-->
+<div class="item content">
+	<div class="container toparea">
+		<div class="row text-center">
+			<div class="col-md-4">
+				<div class="col editContent">
+					<span class="numberstep"><i class="fa fa-shopping-cart"></i></span>
+					<h3 class="numbertext"> Latest Posts</h3>
+					<p>
+						  page 1 content
+					</p>
+				</div>
+				<!-- /.col-md-4 -->
+			</div>
+			<!-- /.col-md-4 col -->
+			<div class="col-md-4 editContent">
+				<div class="col">
+					<span class="numberstep"><i class="fa fa-gift"></i></span>
+					<h3 class="numbertext">Announcements</h3>
+					<p>
+						  Page 2
+					</p>
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.col-md-4 col -->
+			<div class="col-md-4 editContent">
+				<div class="col">
+					<span class="numberstep"><i class="fa fa-download"></i></span>
+					<h3 class="numbertext">Third Thing</h3>
+					<p>
+						  page content 3
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -152,7 +202,7 @@
           </div>
         </div>
         </div>
-    </main>
+<!--    </main>-->
     <body>
     <footer id="sticky-footer" class="py-4 bg-secondary text-white-50 fixed-bottom">
         <div class="container text-center">
