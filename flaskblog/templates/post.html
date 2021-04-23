@@ -16,27 +16,6 @@
       <p class="article-content">{{ post.content }}</p>
     </div>
 
-
-<!--like Button      -->
-      <div class="border-top pt-3">
-  {% if current_user.has_liked_post(post) %}
-        <small class="text-muted">
-    <a href="{{ url_for('like_action', post_id=post.id, action='unlike') }}">Unlike</a>
-        </small>
-  {% else %}
-          <small class="text-muted">
-    <a href="{{ url_for('like_action', post_id=post.id, action='like') }}">Like</a>
-          </small>
-  {% endif %}
-          </div>
-<!--        <button id="like"  type="button" class="btn btn-default btn-sm" onclick="likePost()" >-->
-<!--&lt;!&ndash;          <span class="glyphicon glyphicon-thumbs-up"></span> &ndash;&gt;-->
-<!--            Like-->
-<!--        </button>-->
-
-
-
-
   </article>
 <!-- Comments section underneath each article-->
     <div class="comments-area">
