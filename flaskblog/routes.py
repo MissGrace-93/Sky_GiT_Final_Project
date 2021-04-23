@@ -249,3 +249,15 @@ def contact():
 
     return render_template('contact-form.html', **locals())
 
+
+@app.route('/post/<int:post_id>/<action>', methods=['GET', 'POST'])
+# @login_required
+def like_action(post_id, action):
+    post = Post.query.get_or_404(post_id)
+    if action == 'like':
+        current_user.like_post(post)
+        db.session.commit()
+    if action == 'unlike':
+        current_user.unlike_post(post)
+        db.session.commit()
+    return redirect(request.referrer)
