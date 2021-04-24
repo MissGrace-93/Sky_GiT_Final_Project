@@ -25,12 +25,6 @@ def home_page():
 
     return render_template('home_page.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html', title='about')
-
-
-
 @app.route('/blog_archive')
 def blog_archive():
     page = request.args.get('page', 1, type=int)
