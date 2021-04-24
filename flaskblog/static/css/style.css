@@ -625,7 +625,8 @@ legend {
 	display:inline-block;
 }
 .footer {
-	background:#222;
+/* below is the colour of the grey footer */
+	background:#8b8982;
 	color:#999;
 	font-size:14px;
 	padding:60px 0 40px 0;
