@@ -17,9 +17,9 @@
     </div>
 
       <!--like Button      -->
+      <h6>{{post.likes}} Likes</h6>
    {% if current_user.is_authenticated %}
       <div class="border-top pt-3">
-<!--       <h6>{{post.likes}} Likes</h6>-->
       {% if current_user.has_liked_post(post) %}
             <small class="text-muted">
         <a href="{{ url_for('like_action', post_id=post.id, action='unlike') }}">Unlike</a>
