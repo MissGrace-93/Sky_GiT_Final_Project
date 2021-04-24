@@ -42,7 +42,7 @@ def results():
         posts= session.query(Post).filter(Post.title.contains(q) |
                                            Post.content.contains(q)).order_by(Post.date_posted.desc())
     else:
-        posts = session.query(Post).all()
+        posts = Post.query.order_by(Post.date_posted.desc())
     return render_template('results.html', posts=posts)
 
 @app.route('/about')
