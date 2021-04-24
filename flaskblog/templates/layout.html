@@ -4,13 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
-<link href="static/css/bootstrap.min.css" rel="stylesheet">
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-<link href="static/css/style.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600,700" rel="stylesheet">
-<!--The line below is from our original code, i don't know if it's necessary-->
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css') }}">
+<!--stylesheet links corrected -->
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css') }}">
+
+<!-- These .css files don't seem to be linked & not sure why? added & commented out for now-->
+<!--<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css') }}">-->
+<!--<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.theme.css') }}">-->
+<!--<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.theme.min.css') }}">-->
 
 
 
@@ -247,8 +252,8 @@ jQuery(document).ready(function ($) {
 });
 </script>
 
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->
 
 
 
