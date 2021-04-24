@@ -25,7 +25,6 @@ def home_page():
 
     return render_template('home_page.html')
 
-
 @app.route('/blog_archive')
 def blog_archive():
     page = request.args.get('page', 1, type=int)
@@ -45,10 +44,21 @@ def results():
         posts = Post.query.order_by(Post.date_posted.desc())
     return render_template('results.html', posts=posts)
 
-@app.route('/about')
-def about():
-    return render_template('about.html', title='About')
+@app.route('/articles')
+def articles():
+    return render_template('articles.html', title='Article')
 
+@app.route('/article-1')
+def article_1():
+    return render_template('article-1.html', title='Article1')
+
+@app.route('/article-2')
+def article_2():
+    return render_template('article-2.html', title='Article2')
+
+@app.route('/article-3')
+def article_3():
+    return render_template('article-3.html', title='Article3')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
