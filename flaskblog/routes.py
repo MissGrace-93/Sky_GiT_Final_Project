@@ -291,3 +291,12 @@ def most_commented():
     title = "Most commented blog post!"
 
     return render_template('most_popular.html', posts=posts, title=title)
+
+
+# Route for most recent
+@app.route('/most_recent', methods=['GET', 'POST'])
+def most_recent():
+    posts = Post.query.order_by(Post.date_posted.desc()).limit(1).all()
+    title = "Most recent blog post!"
+
+    return render_template('most_popular.html', posts=posts, title=title)
