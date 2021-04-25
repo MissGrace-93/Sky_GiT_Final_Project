@@ -16,11 +16,12 @@
           </div>
         </article>
 {% endfor %}
-<div style="padding-top:20px; padding-bottom:20px">
-<!--This won't work until linked to homepage-->
+<div
+    style="padding-top:20px; padding-bottom:20px">
+
     <div class="border-top pt-3">
         <small class="text-muted">
-        <a class="ml-2" href="{{ request.referrer }}"> Go Back </a>
+        <a class="ml-2" href="{{ url_for ('home_page') }}"> Go Back </a>
         </small>
     </div>
 </div>

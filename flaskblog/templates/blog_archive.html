@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-<div style="padding-top:30px; padding-bottom:30px">
+<div
+        style="padding-top:20px; padding-bottom:20px">
+
+    <div style="padding-top:30px; padding-bottom:30px">
     {% for post in posts.items%}
         <article class="media content-section">
           <div class="media-body">
@@ -14,9 +17,8 @@
         </article>
     {% endfor %}
 
-    <div
-    style="padding-top:20px; padding-bottom:20px">
-</div>
+    </div>
+
 
     {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}
@@ -29,11 +31,7 @@
         ...
       {% endif %}
     {% endfor %}
-</div>
 
-<div
-    style="padding-top:20px; padding-bottom:20px">
 </div>
-
 
 {% endblock content %}
