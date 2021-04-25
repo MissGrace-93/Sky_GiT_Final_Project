@@ -55,6 +55,7 @@ abbr[title] {
 b,
 strong {
   font-weight: bold;
+
 }
 dfn {
   font-style: italic;
@@ -85,6 +86,7 @@ sub {
 }
 img {
   border: 0;
+  text-align: center;
 }
 svg:not(:root) {
   overflow: hidden;
@@ -1083,7 +1085,7 @@ html {
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
@@ -1114,6 +1116,7 @@ figure {
 }
 img {
   vertical-align: middle;
+  text-align: center;
 }
 .img-responsive,
 .thumbnail > img,
@@ -1288,7 +1291,9 @@ h6,
 }
 p {
   margin: 0 0 10px;
+  text-align: justify;
 }
+
 .lead {
   margin-bottom: 20px;
   font-size: 16px;
@@ -1460,6 +1465,7 @@ dd {
     text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
+
   }
   .dl-horizontal dd {
     margin-left: 180px;
@@ -1587,9 +1593,9 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 768px) {
+@media {
   .container {
-    width: 750px;
+    width: 100%;
   }
 }
 @media (min-width: 992px) {
@@ -1949,7 +1955,7 @@ pre code {
     width: 75%;
   }
   .col-md-8 {
-    width: 66.66666667%;
+    width: 100%;
   }
   .col-md-7 {
     width: 58.33333333%;
@@ -2548,7 +2554,7 @@ output {
 }
 .form-control {
   display: block;
-  width: 100%;
+  width: 80%;
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -5991,7 +5997,7 @@ button.close {
   z-index: 1070;
   display: block;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   font-style: normal;
   font-weight: normal;
   line-height: 1.42857143;
@@ -6110,7 +6116,7 @@ button.close {
   max-width: 276px;
   padding: 1px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: normal;
   line-height: 1.42857143;

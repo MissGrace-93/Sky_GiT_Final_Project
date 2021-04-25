@@ -3,7 +3,8 @@
     <br>
     <h1> {{ title }} </h1>
     <br>
-    {% for post in posts%}
+<!--Displaying posts-->
+{% for post in posts%}
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
@@ -14,5 +15,13 @@
             <p class="article-content">{{ post.content }}</p>
           </div>
         </article>
-    {% endfor %}
+{% endfor %}
+
+<!--This won't work until linked to homepage-->
+    <div class="border-top pt-3">
+        <small class="text-muted">
+        <a class="ml-2" href="{{ request.referrer }}"> Go Back </a>
+        </small>
+    </div>
+
 {% endblock content %}
