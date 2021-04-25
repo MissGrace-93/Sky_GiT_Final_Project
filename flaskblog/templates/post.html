@@ -15,7 +15,7 @@
       <h2 class="article-title">{{ post.title }}</h2>
       <p class="article-content">{{ post.content }}</p>
     </div>
-
+    </article>
       <!--like Button      -->
       <h6>{{post.likes}} Likes</h6>
    {% if current_user.is_authenticated %}
@@ -37,7 +37,7 @@
 <!--            Like-->
 <!--        </button>-->
 
-  </article>
+
 <!-- Comments section underneath each article-->
     <div class="comments-area">
 							<h4>{{post.comments}} Comments</h4>

@@ -13,6 +13,12 @@ h1,h2,h3,h4,h5,h6 {
 	font-family:Roboto;
 	font-weight:700;
 }
+
+iframe {
+    margin: 0 auto;
+    display:block
+}
+}
 .unstyle ul li,.unstyle ol li,ul.unstyle li,ol.unstyle li {
 	list-style:none;
 	line-height:inherit;
@@ -213,7 +219,12 @@ a.homebrowseitems:hover {
 /*==============================================* SHOP *===============================================*/
 img {
 	max-width: 100%;
+	text-align: center;
+	margin: 0 auto;
+    display:block
 }
+
+
 /*Product Box*/
 .maxproduct {
 	max-height:300px;

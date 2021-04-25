@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="">
+   <!-- jquery -->
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!-- [/] jquery -->
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700" rel="stylesheet">
@@ -13,7 +17,7 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css') }}">
 
 <!-- These .css files don't seem to be linked & not sure why? added & commented out for now-->
-<!--<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css') }}">-->
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.css') }}">
 <!--<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.theme.css') }}">-->
 <!--<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.theme.min.css') }}">-->
 
@@ -56,9 +60,9 @@
                     <li class="propClone"><a href="{{ url_for('contact') }} ">Contact</a></li>
 
                 <li class="propClone"> <!-- Search bar html needs padding to push down  -->
-                <form class="form-inline my-2 my-lg-0" action="{{ url_for('results') }}" method="GET" >
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="q">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="form-inline my-2 my-lg-2" action="{{ url_for('results') }}" method="GET" >
+                <input class="form-control mr-sm-2 my-lg-2" type="search" placeholder="Search" name="q">
+                <button class="btn btn-outline-success my-2 my-sm-0 my-lg-2" type="submit">Search</button>
                 </form>
                 </li>
 
