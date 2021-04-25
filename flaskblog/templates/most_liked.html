@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
+    <br>
+    <h1>Most Like Blog Post!</h1>
+    <br>
 <!--Displaying posts-->
 {% for post in posts%}
         <article class="media content-section">
@@ -13,4 +16,12 @@
           </div>
         </article>
 {% endfor %}
+
+<!--This won't work until linked to homepage-->
+    <div class="border-top pt-3">
+        <small class="text-muted">
+        <a class="ml-2" href="{{ request.referrer }}"> Go Back </a>
+        </small>
+    </div>
+
 {% endblock content %}

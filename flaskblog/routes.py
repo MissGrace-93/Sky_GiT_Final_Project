@@ -277,8 +277,8 @@ def like_action(post_id, action):
 
 
 # Route for most likes
-@app.route('/most_popular', methods=['GET', 'POST'])
+@app.route('/most_liked', methods=['GET', 'POST'])
 def most_popular():
     posts = Post.query.order_by(Post.likes.desc()).limit(1).all()
 
-    return render_template('most_popular.html', posts=posts)
+    return render_template('most_liked.html', posts=posts)
