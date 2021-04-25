@@ -18,6 +18,7 @@ h5,
 h6 {
   font-family: Roboto;
   font-weight: 700;
+  color: #3d566e;
 }
 .unstyle ul li,
 .unstyle ol li,
@@ -27,6 +28,18 @@ ol.unstyle li {
   line-height: inherit;
 
 }
+
+p {
+  margin: 0 0 10px;
+  text-align: justify;
+  text-size: 18 px;
+}
+
+.video {
+    text-align: center;
+}
+
+
 .text-left {
   text-align: left !important;
 }
