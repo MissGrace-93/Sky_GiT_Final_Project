@@ -274,3 +274,11 @@ def like_action(post_id, action):
         post.likes -= 1
         db.session.commit()
     return redirect(request.referrer)
+
+
+# Route for most likes
+@app.route('/most_popular', methods=['GET', 'POST'])
+def most_popular():
+    posts = Post.query.order_by(Post.likes.desc()).limit(1).all()
+
+    return render_template('most_popular.html', posts=posts)
