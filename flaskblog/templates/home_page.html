@@ -7,9 +7,11 @@
 			<div class="col-md-4">
 				<div class="col editContent">
 					<span class="numberstep"><i class="fa fa-paw"></i></span>
-					<h3 class="numbertext"> Latest Posts</h3>
+					<h3 class="numbertext">
+					<a href="{{ url_for('most_recent') }}"> Latest Post </a>
+					</h3>
 					<p>
-						  page 1 content
+						  The latest posts from the blog!
 					</p>
 				</div>
 				<!-- /.col-md-4 -->
@@ -18,9 +20,11 @@
 			<div class="col-md-4 editContent">
 				<div class="col">
 					<span class="numberstep"><i class="fa fa-paw"></i></span>
-					<h3 class="numbertext">Announcements</h3>
+					<h3 class="numbertext">
+					<a href="{{ url_for('most_liked') }}"> Most Liked </a>
+					</h3>
 					<p>
-						  Page 2
+						  The blog posts with the most love!
 					</p>
 				</div>
 				<!-- /.col -->
@@ -29,9 +33,11 @@
 			<div class="col-md-4 editContent">
 				<div class="col">
 					<span class="numberstep"><i class="fa fa-paw"></i></span>
-					<h3 class="numbertext">Third Thing</h3>
+					<h3 class="numbertext">
+					<a href="{{ url_for('most_commented') }}"> Conversation Starter </a>
+					</h3>
 					<p>
-						  page content 3
+						  The posts that have our members chatting!
 					</p>
 				</div>
 			</div>
