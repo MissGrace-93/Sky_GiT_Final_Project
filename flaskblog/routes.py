@@ -60,6 +60,10 @@ def article_2():
 def article_3():
     return render_template('article-3.html', title='Article3')
 
+@app.route('/article-4')
+def article_4():
+    return render_template('article-4.html', title='Article4')
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
