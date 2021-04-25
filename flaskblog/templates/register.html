@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
+<div style="padding-top:20px; padding-bottom:20px">
     <div class="content-section">
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-r">Join Today</legend>
+                <h1 class="border-bottom mb-r">Join Today</h1>
+                <br>
                 <div class="form-group">
                     {{ form.username.label(class="form-control-label") }}
 
@@ -68,8 +70,9 @@
         </form>
     </div>
     <div class="border-top pt-3">
-        <small class="text-muted">
+        <h4 class="text-muted">
             Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}"> Sign In </a>
-        </small>
+        </h4>
     </div>
+</div>
 {% endblock content %}

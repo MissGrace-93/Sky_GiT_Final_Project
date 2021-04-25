@@ -33,16 +33,18 @@ def blog_archive():
     return render_template('blog_archive.html', posts=posts)
 
 
+# Route for search results
 @app.route('/results')
 def results():
     q = request.args.get('q')
+    title = "Search Results"
 
     if q:
         posts= session.query(Post).filter(Post.title.contains(q) |
                                            Post.content.contains(q)).order_by(Post.date_posted.desc())
     else:
         posts = Post.query.order_by(Post.date_posted.desc())
-    return render_template('results.html', posts=posts)
+    return render_template('results.html', posts=posts, title=title)
 
 @app.route('/articles')
 def articles():
@@ -59,6 +61,10 @@ def article_2():
 @app.route('/article-3')
 def article_3():
     return render_template('article-3.html', title='Article3')
+
+@app.route('/article-4')
+def article_4():
+    return render_template('article-4.html', title='Article4')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -274,3 +280,29 @@ def like_action(post_id, action):
         post.likes -= 1
         db.session.commit()
     return redirect(request.referrer)
+
+
+# Route for most likes
+@app.route('/most_liked', methods=['GET', 'POST'])
+def most_popular():
+    posts = Post.query.order_by(Post.likes.desc()).limit(1).all()
+    title = "Most liked blog post!"
+
+    return render_template('most_popular.html', posts=posts, title=title)
+
+# Route for most commented
+@app.route('/most_commented', methods=['GET', 'POST'])
+def most_commented():
+    posts = Post.query.order_by(Post.comments.desc()).limit(1).all()
+    title = "Most commented blog post!"
+
+    return render_template('most_popular.html', posts=posts, title=title)
+
+
+# Route for most recent
+@app.route('/most_recent', methods=['GET', 'POST'])
+def most_recent():
+    posts = Post.query.order_by(Post.date_posted.desc()).limit(1).all()
+    title = "Most recent blog post!"
+
+    return render_template('most_popular.html', posts=posts, title=title)
