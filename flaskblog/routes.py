@@ -33,16 +33,18 @@ def blog_archive():
     return render_template('blog_archive.html', posts=posts)
 
 
+# Route for search results
 @app.route('/results')
 def results():
     q = request.args.get('q')
+    title = "Search Results"
 
     if q:
         posts= session.query(Post).filter(Post.title.contains(q) |
                                            Post.content.contains(q)).order_by(Post.date_posted.desc())
     else:
         posts = Post.query.order_by(Post.date_posted.desc())
-    return render_template('results.html', posts=posts)
+    return render_template('results.html', posts=posts, title=title)
 
 @app.route('/articles')
 def articles():
