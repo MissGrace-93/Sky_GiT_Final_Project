@@ -1,9 +1,11 @@
 {% extends "layout.html" %}
 {% block content %}
+
 <!-- STEPS =============================-->
 <div class="item content">
 	<div class="container toparea">
 		<div class="row text-center">
+			<h2> Top Picks From Our Community Blog! </h2>
 			<div class="col-md-4">
 				<div class="col editContent">
 					<span class="numberstep"><i class="fa fa-paw"></i></span>
@@ -11,7 +13,9 @@
 					<a href="{{ url_for('most_recent') }}"> Latest Post </a>
 					</h3>
 					<p>
+						<div class="row text-center">
 						  The latest posts from the blog!
+						</div>
 					</p>
 				</div>
 				<!-- /.col-md-4 -->
@@ -24,7 +28,9 @@
 					<a href="{{ url_for('most_liked') }}"> Most Liked </a>
 					</h3>
 					<p>
+						<div class="row text-center">
 						  The blog posts with the most love!
+						</div>
 					</p>
 				</div>
 				<!-- /.col -->
@@ -37,7 +43,9 @@
 					<a href="{{ url_for('most_commented') }}"> Conversation Starter </a>
 					</h3>
 					<p>
+						<div class="row text-center">
 						  The posts that have our members chatting!
+						</div>
 					</p>
 				</div>
 			</div>
@@ -60,6 +68,12 @@
 <!-- AREA =============================-->
 <div class="item content">
 	<div class="container">
+		<div
+    		style="padding-bottom:30px">
+				<div class="row text-center">
+					<h2> Our Latest Articles! </h2>
+				</div>
+		</div>
 		<div class="row">
 			<div class="col-md-4">
 				<i class="fa fa-comments infoareaicon"></i>
