@@ -626,11 +626,11 @@ legend {
 }
 .footer {
 /* below is the colour of the grey footer */
-	background:#8b8982;
-	color:#999;
-	font-size:14px;
-	padding:60px 0 40px 0;
-	margin-top:0px;
+    background: #00bba7;
+    color: #f5f5f5;
+    font-size: 14px;
+    padding: 60px 0 40px 0;
+    margin-top: 0px
 }
 ul,ol {
 	-moz-padding-start:0px;
@@ -642,7 +642,7 @@ ul,ol {
 }
 .footernote {
 	font-size:30px;
-	color:#fff;
+	color:#f5f5f5;
 }
 .footer a {
 	color:#00bba7;
