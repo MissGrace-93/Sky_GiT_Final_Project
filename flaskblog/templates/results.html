@@ -16,7 +16,14 @@
           </div>
         </article>
     {% endfor %}
+<br>
+<div style="...">
+    <h3>Didn't find what you were looking for?</h3>
+    <h3>Why not take a look at our <a class="ml-2" href="{{ url_for('articles') }}"> Articles</a>,
+        or check out these <a class="ml-2" href="{{ url_for('most_liked') }}">top posts</a> in the Blog?</h3>
 
+</div>
+<br>
 <div
     style="padding-top:20px; padding-bottom:20px">
                 <!--Go back to home page-->
