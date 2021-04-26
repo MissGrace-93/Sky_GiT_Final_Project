@@ -107,12 +107,6 @@ def logout():
     return redirect(url_for('home_page'))
 
 
-@app.route('/account')
-@login_required
-def account():
-    return render_template('account.html', title='Account')
-
-
 @app.route("/post/<int:post_id>", methods=['GET', 'POST'])
 def post(post_id):
     post = Post.query.get_or_404(post_id)
