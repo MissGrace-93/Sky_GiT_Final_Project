@@ -29,8 +29,9 @@ def home_page():
 def blog_archive():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3)
+    title = "Our Blog"
 
-    return render_template('blog_archive.html', posts=posts)
+    return render_template('blog_archive.html', posts=posts, title=title)
 
 
 # Route for search results
