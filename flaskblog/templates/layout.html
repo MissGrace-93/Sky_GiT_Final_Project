@@ -64,7 +64,6 @@
 
                     {% if current_user.is_authenticated %}
                         <li class="propClone"><a href="{{ url_for('new_post') }}">New Post</a></li>
-                        <li class="propClone"><a href="{{ url_for('account') }}">Account</a></li>
                         <li class="propClone"><a href="{{ url_for('logout') }}">Logout</a></li>
                     {% else %}
                         <li class="propClone"><a href="{{ url_for('login') }}">Login</a></li>
