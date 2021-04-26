@@ -32,29 +32,28 @@
     </article>
 
       <!--like Button      -->
-      <h6>{{post.likes}} Likes</h6>
+    <div class="border-top pt-3">
+      <h6>{{post.likes}} Likes </h6>
+
       {% if current_user.is_authenticated %}
-      <div class="border-top pt-3">
 
         {% if current_user.has_liked_post(post) %}
         <small class="text-muted">
           <a
             href="{{ url_for('like_action', post_id=post.id, action='unlike') }}"
-            >Unlike</a
+            > Unlike</a
           >
         </small>
         {% else %}
         <small class="text-muted">
           <a href="{{ url_for('like_action', post_id=post.id, action='like') }}"
-            >Like</a
+            > Like</a
           >
         </small>
         {% endif %} {% endif %}
       </div>
-      <!--        <button id="like"  type="button" class="btn btn-default btn-sm" onclick="likePost()" >-->
-      <!--&lt;!&ndash;          <span class="glyphicon glyphicon-thumbs-up"></span> &ndash;&gt;-->
-      <!--            Like-->
-      <!--        </button>-->
+      </div>
+
     </article>
   </div>
 </div>

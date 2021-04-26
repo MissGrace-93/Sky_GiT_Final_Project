@@ -946,3 +946,8 @@ textarea.error {
   color: #337ab7 /* Change text colour on hover */
 }
 
+/* likes & like button alignment */
+h6,small.text-muted{
+display:inline;
+}
+
