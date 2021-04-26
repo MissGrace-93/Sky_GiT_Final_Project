@@ -41,10 +41,14 @@ def results():
 
     if q:
         posts= session.query(Post).filter(Post.title.contains(q) |
-                                           Post.content.contains(q)).order_by(Post.date_posted.desc())
+                                           Post.content.contains(q)).order_by(Post.date_posted.desc()).limit(3).all()
+        return render_template('results.html', posts=posts, title=title)
     else:
-        posts = Post.query.order_by(Post.date_posted.desc())
-    return render_template('results.html', posts=posts, title=title)
+        page = request.args.get('page', 1, type=int)
+        posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3)
+
+        return render_template('blog_archive.html', posts=posts, title=title)
+
 
 @app.route('/articles')
 def articles():
