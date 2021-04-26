@@ -12,18 +12,18 @@
               <small class="text-muted"> at {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
             <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+<!--            <p class="article-content">{{ post.content }}</p>-->
           </div>
         </article>
 {% endfor %}
 <div
     style="padding-top:20px; padding-bottom:20px">
-
-    <div class="border-top pt-3">
-        <small class="text-muted">
-        <a class="ml-2" href="{{ url_for ('home_page') }}"> Go Back </a>
-        </small>
-    </div>
+            <!--Go back to home page-->
+        <div class="border-top pt-3" style="text-size: 14px">
+          <h4 class="text-muted">
+            <a class="ml-2" href="{{ url_for('home_page') }}"> Go back to the homepage </a>
+          </h4>
+        </div>
 </div>
 
 {% endblock content %}

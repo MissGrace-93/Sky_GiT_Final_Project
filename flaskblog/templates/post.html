@@ -5,10 +5,9 @@
     <article class="media content-section">
       <div class="media-body">
         <div class="article-metadata">
-          <a class="mr-2" href="#">{{ post.author.username }}</a>
-          <small class="text-muted"
-            >{{ post.date_posted.strftime('%Y-%m-%d') }}</small
-          >
+              <small class="text-muted">posted by {{ post.author.username }}</small>
+              <small class="text-muted"> at {{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+
           {% if post.author == current_user %}
           <div>
             <a
@@ -170,7 +169,7 @@
 </div>
 
 <!--Go back to previous url-->
-<div class="border-top pt-3">
+<div class="border-top pt-3" style="text-size: 14px">
   <h4 class="text-muted">
     <a class="ml-2" href="{{ request.referrer }}"> Go Back </a>
   </h4>

@@ -41,10 +41,14 @@ def results():
 
     if q:
         posts= session.query(Post).filter(Post.title.contains(q) |
-                                           Post.content.contains(q)).order_by(Post.date_posted.desc())
+                                           Post.content.contains(q)).order_by(Post.date_posted.desc()).limit(3).all()
+        return render_template('results.html', posts=posts, title=title)
     else:
-        posts = Post.query.order_by(Post.date_posted.desc())
-    return render_template('results.html', posts=posts, title=title)
+        page = request.args.get('page', 1, type=int)
+        posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=3)
+
+        return render_template('blog_archive.html', posts=posts, title=title)
+
 
 @app.route('/articles')
 def articles():
@@ -285,8 +289,8 @@ def like_action(post_id, action):
 # Route for most likes
 @app.route('/most_liked', methods=['GET', 'POST'])
 def most_liked():
-    posts = Post.query.order_by(Post.likes.desc()).limit(1).all()
-    title = "Most liked blog post!"
+    posts = Post.query.order_by(Post.likes.desc()).limit(3).all()
+    title = "Most liked blog posts!"
 
     return render_template('most_popular.html', posts=posts, title=title)
 
@@ -294,8 +298,8 @@ def most_liked():
 # Route for most commented
 @app.route('/most_commented', methods=['GET', 'POST'])
 def most_commented():
-    posts = Post.query.order_by(Post.comments.desc()).limit(1).all()
-    title = "Most commented blog post!"
+    posts = Post.query.order_by(Post.comments.desc()).limit(3).all()
+    title = "Most commented blog posts!"
 
     return render_template('most_popular.html', posts=posts, title=title)
 
@@ -303,7 +307,7 @@ def most_commented():
 # Route for most recent
 @app.route('/most_recent', methods=['GET', 'POST'])
 def most_recent():
-    posts = Post.query.order_by(Post.date_posted.desc()).limit(1).all()
-    title = "Most recent blog post!"
+    posts = Post.query.order_by(Post.date_posted.desc()).limit(3).all()
+    title = "Most recent blog posts!"
 
     return render_template('most_popular.html', posts=posts, title=title)
