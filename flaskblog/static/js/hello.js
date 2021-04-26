@@ -1,3 +1,5 @@
+//SCROLL TO TOP BUTTON:
+
 //Get the button:
 mybutton = document.getElementById("myBtn");
 
@@ -16,4 +18,13 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+
+
+// lIKE BUTTON POPUP
+
+// When the user clicks on div, open the popup
+function popupFunction() {
+ var popup = document.getElementById("myPopup");
+ popup.classList.toggle("show");
 }
