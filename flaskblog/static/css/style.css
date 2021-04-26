@@ -931,15 +931,18 @@ textarea.error {
   z-index: 99; /* Make sure it does not overlap */
   border: none; /* Remove borders */
   outline: none; /* Remove outline */
-  background-color: none; /* Set a background color */
+  background-color: #337ab7; /* Set a background color */
   color: white; /* Text color */
   cursor: pointer; /* Add a mouse pointer on hover */
   padding: 15px; /* Some padding */
   border-radius: 10px; /* Rounded corners */
   font-size: 18px; /* Increase font size */
+  font-family: Roboto;
+  font-weight: 700;
 }
 
 #myBtn:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
+  background-color: #CCD6DD; /* Add a light grey background on hover */
+  color: #337ab7 /* Change text colour on hover */
 }
 
