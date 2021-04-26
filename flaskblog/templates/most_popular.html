@@ -18,12 +18,12 @@
 {% endfor %}
 <div
     style="padding-top:20px; padding-bottom:20px">
-
-    <div class="border-top pt-3">
-        <small class="text-muted">
-        <a class="ml-2" href="{{ url_for ('home_page') }}"> Go Back </a>
-        </small>
-    </div>
+            <!--Go back to home page-->
+        <div class="border-top pt-3" style="text-size: 14px">
+          <h4 class="text-muted">
+            <a class="ml-2" href="{{ url_for('home_page') }}"> Go back to the homepage </a>
+          </h4>
+        </div>
 </div>
 
 {% endblock content %}
