@@ -18,8 +18,8 @@
             <button
               type="button"
               class="btn btn-danger btn-sm m-1"
-              data-bs-toggle="modal"
-              data-bs-target="#deleteModal"
+              data-toggle="modal"
+              data-target="#deleteModal"
             >
               Delete
             </button>
@@ -140,39 +140,60 @@
 </div>
 
 <!-- Modal -->
-<div
-  class="modal fade"
-  id="deleteModal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="deleteModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <h4 class="modal-title" id="deleteModalLabel">Delete Post?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <form
-          action="{{ url_for('delete_post', post_id=post.id) }}"
-          method="POST"
-        >
-          <input class="btn btn-danger" type="submit" value="Delete" />
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <form action="{{ url_for('delete_post', post_id=post.id) }}" method="POST">
+        <input class="btn btn-danger" type="submit" value="Delete">
         </form>
       </div>
     </div>
   </div>
 </div>
+
+
+<!--<div-->
+<!--  class="modal fade"-->
+<!--  id="deleteModal"-->
+<!--  tabindex="-1"-->
+<!--  role="dialog"-->
+<!--  aria-labelledby="deleteModalLabel"-->
+<!--  aria-hidden="true"-->
+<!--&gt;-->
+<!--  <div class="modal-dialog" role="document">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h5 class="modal-title" id="deleteModalLabel">Delete Post?</h5>-->
+<!--        <button-->
+<!--          type="button"-->
+<!--          class="close"-->
+<!--          data-dismiss="modal"-->
+<!--          aria-label="Close"-->
+<!--        ></button>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-secondary" data-dismiss="modal">-->
+<!--          Close-->
+<!--        </button>-->
+<!--        <form-->
+<!--          action="{{ url_for('delete_post', post_id=post.id) }}"-->
+<!--          method="POST"-->
+<!--        >-->
+<!--          <input class="btn btn-danger" type="submit" value="Delete" />-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 <!--Go back to previous url-->
 <div class="border-top pt-3" style="text-size: 14px">
@@ -181,4 +202,5 @@
   </h4>
 </div>
 <br>
+
 {% endblock content %}
