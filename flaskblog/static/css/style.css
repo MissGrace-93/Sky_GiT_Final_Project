@@ -39,9 +39,9 @@ p {
     text-align: center;
 }
 
-button, input, select, textarea {
+/* button, input, select, textarea {
     margin-top: 20px;
-}
+} */
 
 .text-left {
   text-align: left !important;
