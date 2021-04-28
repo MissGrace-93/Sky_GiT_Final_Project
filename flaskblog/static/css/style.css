@@ -43,6 +43,10 @@ p {
     margin-top: 20px;
 } */
 
+form {
+    display: block;
+    margin-top: 20px;
+}
 .text-left {
   text-align: left !important;
 }
